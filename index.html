@@ -1,239 +1,392 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Adama City | Infrastructure Status Portal</title>
-  <meta name="description"
-    content="Official Adama City Administration Infrastructure Health Grid Dashboard. Real-time monitoring of water, electricity, roads, and waste across sub-cities.">
+  <title>CityLink | Document Readiness Tracker</title>
+  <meta name="description" content="Check the status of your municipal ID, birth certificate, or marriage license applications online instantly. Avoid queues and save time.">
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-  <!-- Background Decorative Light Blurs -->
+  <!-- Floating Background Glows -->
   <div class="bg-glow-container" aria-hidden="true">
     <div class="bg-glow-1"></div>
     <div class="bg-glow-2"></div>
   </div>
 
-  <!-- Header -->
-
-
+  <!-- Header Navigation -->
   <header>
     <div class="header-container">
-      <a href="#" class="logo-group">
+      <a href="#" class="logo-group" id="logo-link">
         <div class="logo-icon">
-          <!-- City Tower Icon SVG -->
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-            stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9s2.015-9 4.5-9m0 0a9.003 9.003 0 018.716 5.253M12 3a9.003 9.003 0 00-8.716 5.253m0 0A9.003 9.003 0 0112 12c2.485 0 4.5-4.03 4.5-9s-2.015-9-4.5-9" />
+          <!-- Municipal-style Shield SVG -->
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
           </svg>
         </div>
         <div class="logo-text">
-          <h1>Adama City</h1>
-          <span>Infrastructure Portal <span class="badge-mode public" id="mode-badge">Public View</span></span>
+          <h1>CityLink</h1>
+          <span>Municipal Portal</span>
         </div>
       </a>
-
+      
       <div class="nav-actions">
         <!-- Light / Dark Mode Toggle -->
         <button class="btn-icon" id="theme-toggle" title="Toggle color theme" aria-label="Toggle theme">
-          <svg id="sun-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-            stroke="currentColor" style="display: none;">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M12 3v2.25m0 13.5V21M9.75 15h.008v.008H9.75V15zm0-6h.008v.008H9.75V9zm6 0h.008v.008h-.008V9zm0 6h.008v.008h-.008V15zm-9.333-3A7.5 7.5 0 0012 19.5a7.5 7.5 0 005.333-2.25m-10.666 0A7.5 7.5 0 0112 4.5a7.5 7.5 0 015.333 2.25M21 12h-2.25m-13.5 0H3m16.5-5.657l-1.59 1.59M5.657 5.657l1.59 1.59m11.146 11.146l-1.59-1.59m-11.146 0l1.59-1.59" />
+          <svg id="sun-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="display: none;">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m0 13.5V21M9.75 15h.008v.008H9.75V15zm0-6h.008v.008H9.75V9zm6 0h.008v.008h-.008V9zm0 6h.008v.008h-.008V15zm-9.333-3A7.5 7.5 0 0012 19.5a7.5 7.5 0 005.333-2.25m-10.666 0A7.5 7.5 0 0112 4.5a7.5 7.5 0 015.333 2.25M21 12h-2.25m-13.5 0H3m16.5-5.657l-1.59 1.59M5.657 5.657l1.59 1.59m11.146 11.146l-1.59-1.59m-11.146 0l1.59-1.59" />
           </svg>
-          <svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-            stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+          <svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
           </svg>
         </button>
 
-        <!-- Access switch button -->
-        <button class="btn-auth" id="btn-auth-switch">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-            style="width: 18px; height: 18px;">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1121.75 8.25z" />
+        <!-- Access Mode Switch (Portal Toggle) -->
+        <button class="btn-staff" id="portal-switch-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
           </svg>
-          <span id="auth-btn-label">Official Login</span>
+          <span id="portal-btn-label">Staff Portal</span>
         </button>
       </div>
     </div>
   </header>
 
+  <!-- Main Workspace -->
   <main>
-    <!-- Grid summary widgets -->
-    <div class="summary-container">
+    
+    <!-- CITIZEN TRACKING SECTION -->
+    <section id="citizen-section" class="section active">
+      <div class="hero-block">
+        <h2>Document Readiness Tracker</h2>
+        <p>Enter your unique application tracking code below to check the real-time status of your Municipal ID, certificates, or licenses.</p>
+      </div>
 
-      <!-- City health gauge -->
-      <div class="glass-card city-health-card">
-        <div class="gauge-circle-container">
-          <svg viewBox="0 0 100 100">
-            <circle class="gauge-bg" cx="50" cy="50" r="45"></circle>
-            <circle class="gauge-fill" id="city-health-gauge" cx="50" cy="50" r="45"></circle>
+      <!-- Search Box Card -->
+      <div class="glass-card">
+        <div class="search-container">
+          <form id="search-form" onsubmit="event.preventDefault();">
+            <div class="search-box-wrapper">
+              <!-- Search Icon -->
+              <svg class="search-lead-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.637 10.637z" />
+              </svg>
+              <input type="text" id="search-input" class="search-input" placeholder="e.g. APP-10204" autocomplete="off" required>
+              <button type="submit" class="btn-search" id="btn-search">
+                <span>Check Status</span>
+              </button>
+            </div>
+          </form>
+          <p class="search-helper-text">Tip: Use <code>APP-10204</code> or <code>APP-10205</code> for interactive demo items.</p>
+        </div>
+      </div>
+
+      <!-- Result Visualizer Container -->
+      <div class="result-container" id="result-container">
+        
+        <!-- Case 1: Application Found Details -->
+        <div class="glass-card result-card" id="found-card">
+          <div class="result-header">
+            <div class="result-meta">
+              <h3 id="res-doc-type">Municipal Identity Card</h3>
+              <p>Applicant: <span id="res-applicant" style="font-weight: 500;">Jane Doe</span></p>
+              <p>Tracking Code: <strong id="res-code">APP-10204</strong> • Logged on <span id="res-date">June 2, 2026</span></p>
+            </div>
+            <div>
+              <span class="badge-status processing" id="res-badge">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" style="width:16px; height:16px;">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+                </svg>
+                <span id="res-status-label">Processing</span>
+              </span>
+            </div>
+          </div>
+
+          <!-- Vertical / Horizontal Interactive Steps Tracker -->
+          <div class="steps-tracker">
+            <div class="steps-tracker-line-fill" id="tracker-line"></div>
+            
+            <div class="step-node completed" id="step-logged">
+              <div class="step-circle">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+                </svg>
+              </div>
+              <span class="step-label">Application Filed</span>
+              <span class="step-time" id="time-logged">09:12 AM</span>
+            </div>
+
+            <div class="step-node" id="step-processing">
+              <div class="step-circle">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z" />
+                </svg>
+              </div>
+              <span class="step-label">Processing & Signoff</span>
+              <span class="step-time" id="time-processing">-</span>
+            </div>
+
+            <div class="step-node" id="step-ready">
+              <div class="step-circle">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <span class="step-label">Ready for Pickup</span>
+              <span class="step-time" id="time-ready">-</span>
+            </div>
+          </div>
+
+          <!-- Pickup Action details Box (Only visible when status is 'Ready for Pickup') -->
+          <div class="pickup-details-box" id="pickup-details" style="display: none;">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 111.063.852l-.708 2.836a.75.75 0 001.063.852l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+            </svg>
+            <div class="pickup-details-content">
+              <h4>Collection Instructions</h4>
+              <ul>
+                <li><strong>Location:</strong> Main Municipal Hall, Room 104 (Ground Floor)</li>
+                <li><strong>Hours:</strong> Mon - Fri, 8:00 AM - 4:00 PM</li>
+                <li><strong>What to Bring:</strong> Your application filing receipt, along with one alternative photo ID (if available).</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Print / Action Row -->
+          <div style="margin-top: 2rem; display: flex; justify-content: flex-end;">
+            <button class="btn-secondary" id="btn-print-receipt">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width: 16px; height: 16px;">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a42.415 42.415 0 0110.56 0m-10.56 0L6.34 18m10.94-4.171c.24.03.48.062.72.096m-.72-.096L17.66 18m0 0a2.25 2.25 0 01-2.25 2.25H8.59a2.25 2.25 0 01-2.25-2.25M17.66 18.225a2.25 2.25 0 01-2.25 2.25H8.59a2.25 2.25 0 01-2.25-2.25M15 15h.008v.008H15V15zm0-3h.008v.008H15V12zM9 15h.008v.008H9V15zm0-3h.008v.008H9V12zm3 0h.008v.008H12V12zm0 3h.008v.008H12V15z" />
+              </svg>
+              Print Status Receipt
+            </button>
+          </div>
+        </div>
+
+        <!-- Case 2: Not Found Visuals -->
+        <div class="glass-card not-found-card" id="not-found-card" style="display: none;">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
           </svg>
-          <div class="gauge-text" id="city-health-percentage">0%</div>
+          <h3>Application Not Found</h3>
+          <p>We couldn't find an active application matching that tracking number. Please verify the code on your receipt or contact the support desk.</p>
+          <button class="btn-secondary" onclick="document.getElementById('search-input').select();" style="margin: 0 auto;">Try Another Code</button>
         </div>
-        <div class="health-desc">
-          <h3>Overall City Health Index</h3>
-          <p id="city-health-summary">Calculating active indices...</p>
+
+      </div>
+    </section>
+
+    <!-- ADMIN STAFF SECTION -->
+    <section id="admin-section" class="section">
+      
+      <!-- Admin Header Block -->
+      <div class="admin-header">
+        <div class="admin-title-group">
+          <h2>Administrative Portal</h2>
+          <p>Manage application statuses, log filings, and update pickup readiness details.</p>
+        </div>
+        <div class="btn-group">
+          <button class="btn-secondary" id="btn-export-csv" title="Export database to CSV">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width: 16px; height: 16px;">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+            </svg>
+            Export CSV
+          </button>
+          <button class="btn-secondary" id="btn-import-csv" title="Import from CSV data">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width: 16px; height: 16px;">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+            </svg>
+            Import CSV
+            <input type="file" id="csv-file-input" style="display: none;" accept=".csv">
+          </button>
         </div>
       </div>
 
-      <!-- Outages breakdown metrics -->
-      <div class="glass-card metrics-grid">
-        <div class="metric-pill green">
-          <h4 id="stat-green">0</h4>
-          <p>Functional Services</p>
+      <!-- Quick Metrics Row -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon total">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:24px; height:24px;">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.03 0 1.9.693 2.166 1.638m-7.377 2.24V19.5L3 19.5V6.108c0-1.135.845-2.098 1.976-2.192a48.424 48.424 0 011.123-.08m5.801 0c.065.21.1.433.1.664 0 .414-.336.75-.75.75H6a.75.75 0 01-.75-.75 2.25 2.25 0 01.1-.664m5.8 0A2.251 2.251 0 0010.5 2.25H9a2.25 2.25 0 00-2.166 1.638" />
+            </svg>
+          </div>
+          <div class="stat-info">
+            <h4 id="stat-total">0</h4>
+            <p>Active Filings</p>
+          </div>
         </div>
-        <div class="metric-pill yellow">
-          <h4 id="stat-yellow">0</h4>
-          <p>Under Maintenance</p>
+        
+        <div class="stat-card">
+          <div class="stat-icon processing">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:24px; height:24px;">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+            </svg>
+          </div>
+          <div class="stat-info">
+            <h4 id="stat-processing">0</h4>
+            <p>Processing</p>
+          </div>
         </div>
-        <div class="metric-pill red">
-          <h4 id="stat-red">0</h4>
-          <p>Major Outages</p>
+
+        <div class="stat-card">
+          <div class="stat-icon ready">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:24px; height:24px;">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <div class="stat-info">
+            <h4 id="stat-ready">0</h4>
+            <p>Ready for Pickup</p>
+          </div>
         </div>
       </div>
 
-    </div>
+      <!-- Action Panel & Database Table Grid -->
+      <div class="workspace-grid">
+        
+        <!-- Left: Form to Add Application -->
+        <div class="glass-card" style="padding: 1.75rem;">
+          <div class="admin-card-header">
+            <h3>Log New Application</h3>
+            <p>Enter the citizen's filing receipt details to start tracking.</p>
+          </div>
 
-    <!-- Search/Filter Controls -->
-    <div class="filter-bar">
-      <div class="search-field">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round"
-            d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.637 10.637z" />
-        </svg>
-        <input type="text" id="search-input" placeholder="Search sub-cities..." autocomplete="off">
+          <form id="new-app-form">
+            <div class="form-group">
+              <label for="input-app-code">Tracking Code</label>
+              <div style="display: flex; gap: 0.5rem; align-items: center;">
+                <input type="text" id="input-app-code" class="form-control" placeholder="e.g. APP-10356" required style="font-weight:600;">
+                <button type="button" class="btn-secondary" id="btn-generate-code" style="padding: 0.75rem; white-space: nowrap;" title="Generate Random Unique Code">
+                  Auto-Gen
+                </button>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="input-applicant">Applicant Full Name</label>
+              <input type="text" id="input-applicant" class="form-control" placeholder="e.g. Marcus Aurelius" required>
+            </div>
+
+            <div class="form-group">
+              <label for="select-doc-type">Document Type</label>
+              <select id="select-doc-type" class="form-control" required style="height: 48px;">
+                <option value="" disabled selected>Select Document Category</option>
+                <option value="Municipal Identity Card">Municipal Identity Card</option>
+                <option value="Birth Certificate">Birth Certificate</option>
+                <option value="Marriage License">Marriage License</option>
+                <option value="Business Permit">Business Permit</option>
+                <option value="Residency Certificate">Residency Certificate</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="select-initial-status">Initial Status</label>
+              <select id="select-initial-status" class="form-control" style="height: 48px;">
+                <option value="Processing" selected>Processing</option>
+                <option value="Ready for Pickup">Ready for Pickup</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn-primary" style="margin-top: 1rem;">
+              Register Application
+            </button>
+          </form>
+        </div>
+
+        <!-- Right: Table of Active Applications -->
+        <div class="glass-card" style="padding: 1.75rem;">
+          <div class="admin-card-header">
+            <h3>Manage Filings</h3>
+            <p>Search, filter, and modify statuses of registered applications.</p>
+          </div>
+
+          <!-- Table Toolbar -->
+          <div class="table-toolbar">
+            <div class="table-search">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.637 10.637z" />
+              </svg>
+              <input type="text" id="table-search-input" class="table-search-input" placeholder="Search applicant/code...">
+            </div>
+            
+            <select id="table-filter-status" class="table-filter-select">
+              <option value="All">All Statuses</option>
+              <option value="Processing">Processing</option>
+              <option value="Ready for Pickup">Ready for Pickup</option>
+            </select>
+          </div>
+
+          <!-- Active Table -->
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Code</th>
+                  <th>Applicant Name</th>
+                  <th>Document Type</th>
+                  <th>Date Filed</th>
+                  <th>Status</th>
+                  <th style="width: 140px; text-align: center;">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="admin-table-body">
+                <!-- Dynamic Rows Go Here -->
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+
       </div>
 
-      <div class="btn-filter-group">
-        <button class="btn-filter active" data-filter="All">All Regions</button>
-        <button class="btn-filter" data-filter="Outages">Outage Alert (Red)</button>
-        <button class="btn-filter" data-filter="Maintenance">Maintenance (Yellow)</button>
-        <button class="btn-filter" data-filter="Healthy">Healthy (Green)</button>
-      </div>
-    </div>
-
-    <!-- Sub-city Grid Container -->
-    <div class="grid-container" id="grid-container">
-      <!-- Grid items are populated dynamically by app.js -->
-    </div>
+    </section>
 
   </main>
 
-  <!-- Passcode Entry Modal -->
+  <!-- Passcode Verification Modal overlay -->
   <div class="modal-overlay" id="passcode-modal">
     <div class="modal-content">
       <div class="modal-header">
         <h3>Administrative Access</h3>
-        <button class="btn-icon" id="btn-close-passcode-modal" style="width:32px; height:32px; border-radius:50%;"
-          title="Cancel">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
-            stroke="currentColor">
+        <button class="btn-icon" id="btn-close-modal" style="width:32px; height:32px; border-radius:50%;" title="Cancel">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
       </div>
-
-      <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.25rem;">
-        Authenticate with your administration passcode to edit service status colors and add maintenance descriptions.
+      
+      <p style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 1.25rem;">
+        Please enter the administrative credentials code to view the filing dashboard.
       </p>
 
       <form id="passcode-form" onsubmit="event.preventDefault();">
         <div class="form-group">
-          <label for="admin-passcode-input">Administration Passcode</label>
-          <input type="password" id="admin-passcode-input" class="form-control" placeholder="••••••••" required
-            autofocus autocomplete="current-password">
-          <span class="error-hint" id="passcode-error">Invalid access passcode. Hint: adama2026</span>
+          <label for="admin-passcode-input">Passcode</label>
+          <input type="password" id="admin-passcode-input" class="form-control" placeholder="••••••••" required autofocus autocomplete="current-password">
+          <span class="error-hint" id="passcode-error">Invalid access passcode. Hint: admin123</span>
         </div>
-
+        
         <button type="submit" class="btn-primary" style="margin-top: 0.5rem;">
-          Authenticate Portal
+          Authenticate
         </button>
       </form>
     </div>
   </div>
 
-  <!-- Status Editing Modal -->
-  <div class="modal-overlay" id="update-status-modal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3 style="display:flex; flex-direction:column; gap:0.15rem;">
-          <span>Update Status</span>
-          <span id="update-modal-subtitle" style="font-size:0.8rem; font-weight:normal; color:var(--text-muted);">Bole
-            Sub-City • Water Supply</span>
-        </h3>
-        <button class="btn-icon" id="btn-close-update-modal" style="width:32px; height:32px; border-radius:50%;"
-          title="Cancel">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
-            stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-      </div>
-
-      <form id="update-status-form" onsubmit="event.preventDefault();">
-        <input type="hidden" id="update-subcity-id">
-        <input type="hidden" id="update-service-id">
-
-        <div class="form-group">
-          <label>Service Condition</label>
-          <div class="status-radio-group">
-
-            <input type="radio" name="status-option" id="status-green-radio" value="Green" class="status-radio-input"
-              checked>
-            <label for="status-green-radio" class="status-radio-label green">
-              Functional
-            </label>
-
-            <input type="radio" name="status-option" id="status-yellow-radio" value="Yellow" class="status-radio-input">
-            <label for="status-yellow-radio" class="status-radio-label yellow">
-              Maintenance
-            </label>
-
-            <input type="radio" name="status-option" id="status-red-radio" value="Red" class="status-radio-input">
-            <label for="status-red-radio" class="status-radio-label red">
-              Major Outage
-            </label>
-
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="update-notes-input">Status Log / Description Note</label>
-          <textarea id="update-notes-input" class="form-control" rows="3"
-            placeholder="e.g. Scheduled grid repair, pipeline leakage, no outages reported."
-            style="resize: none; font-family: var(--font-main);"></textarea>
-        </div>
-
-        <button type="submit" class="btn-primary" style="margin-top: 0.5rem;">
-          Save Status Update
-        </button>
-      </form>
-    </div>
-  </div>
-
-  <!-- Dynamic Toast Container -->
+  <!-- Dynamic Toast Container for feedback -->
   <div class="toast-container" id="toast-container" aria-live="polite"></div>
 
-  <!-- Footer -->
+  <!-- Footer Info -->
   <footer>
     <div class="footer-container">
-      <p>© 2026 Adama City Administration Infrastructure Grid. Ethiopia.</p>
-      <p style="margin-top: 0.3rem; font-size: 0.75rem;">
-        Contact the Central Municipal Office at <strong>Nazret Admin Link</strong> or dial <strong>911</strong>.
+      <p>© 2026 City Administration Link. Developed for citizen service efficiency.</p>
+      <p style="margin-top: 0.35rem; font-size: 0.75rem;">
+        Need help? Visit the <a href="#">General Services Desk</a> or dial <strong>311</strong>.
       </p>
     </div>
   </footer>
 
   <script src="app.js"></script>
 </body>
-
 </html>
